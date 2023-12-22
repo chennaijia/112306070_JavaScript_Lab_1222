@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1222</title>
+
+    <style>
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body onload="start()">
+    
+    <div>
+        <img id="dice1" src="die1.png" alt="blank image">
+        <img id="dice2" src="die1.png" alt="blank image">
+        <img id="dice3" src="die1.png" alt="blank image">
+        <img id="dice4" src="die1.png" alt="blank image">
+        <img id="dice5" src="die1.png" alt="blank image">
+        <img id="dice6" src="die1.png" alt="blank image">
+    </div>
+    <div>
+        <img id="dice7" src="die1.png" alt="blank image">
+        <img id="dice8" src="die1.png" alt="blank image">
+        <img id="dice9" src="die1.png" alt="blank image">
+        <img id="dice10" src="die1.png" alt="blank image">
+        <img id="dice11" src="die1.png" alt="blank image">
+        <img id="dice12" src="die1.png" alt="blank image">
+    </div>
+    <form action="#">
+        <input id="rollButton" type="button" value="Roll Dice">
+    </form>
+
+    <script>
+        var one = 0;
+        var two = 0;
+        var three = 0;
+        var four = 0;
+        var five = 0;
+        var six = 0;
+
+        function start() {
+            var button = document.getElementById("rollButton");
+            button.addEventListener("click", rollDice);
+            die1Image = document.getElementById("dice1");
+            die2Image = document.getElementById("dice2");
+            die3Image = document.getElementById("dice3");
+            die4Image = document.getElementById("dice4");
+            die5Image = document.getElementById("dice5");
+            die6Image = document.getElementById("dice6");
+            die7Image = document.getElementById("dice7");
+            die8Image = document.getElementById("dice8");
+            die9Image = document.getElementById("dice9");
+            die10Image = document.getElementById("dice10");
+            die11Image = document.getElementById("dice11");
+            die12Image = document.getElementById("dice12");
+        }
+
+        function rollDice() {
+            one = 0;
+            two = 0;
+            three = 0;
+            four = 0;
+            five = 0;
+            six = 0;
+            setImage(die1Image);
+            setImage(die2Image);
+            setImage(die3Image);
+            setImage(die4Image);
+            setImage(die5Image);
+            setImage(die6Image);
+            setImage(die7Image);
+            setImage(die8Image);
+            setImage(die9Image);
+            setImage(die10Image);
+            setImage(die11Image);
+            setImage(die12Image);
+
+            updateTable();
+        }
+
+        function setImage(diceImg) {
+            var diceValue = Math.floor(1 + Math.random() * 6);
+            if (diceValue == 1)
+                one++;
+            else if (diceValue == 2)
+                two++;
+            else if (diceValue == 3)
+                three++;
+            else if (diceValue == 4)
+                four++;
+            else if (diceValue == 5)
+                five++;
+            else if (diceValue == 6)
+                six++;
+            diceImg.setAttribute("src", "die" + diceValue + ".png");
+            diceImg.setAttribute("alt", "die image with " + diceValue + " spot(s)");
+        }
+
+        function updateTable() {
+            var totalRolls = one + two + three + four + five + six;
+
+            var percent1 = (one / totalRolls) * 100;
+            var percent2 = (two / totalRolls) * 100;
+            var percent3 = (three / totalRolls) * 100;
+            var percent4 = (four / totalRolls) * 100;
+            var percent5 = (five / totalRolls) * 100;
+            var percent6 = (six / totalRolls) * 100;
+
+            // Update the table cells with the calculated percentages
+            document.getElementById("percent1").innerText = percent1.toFixed(2) + "%";
+            document.getElementById("percent2").innerText = percent2.toFixed(2) + "%";
+            document.getElementById("percent3").innerText = percent3.toFixed(2) + "%";
+            document.getElementById("percent4").innerText = percent4.toFixed(2) + "%";
+            document.getElementById("percent5").innerText = percent5.toFixed(2) + "%";
+            document.getElementById("percent6").innerText = percent6.toFixed(2) + "%";
+        }
+    </script>
+
+    <table>
+        <tr>
+            <th>Face</th>
+            <th>Percent</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td id="percent1">0.00%</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td id="percent2">0.00%</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td id="percent3">0.00%</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td id="percent4">0.00%</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td id="percent5">0.00%</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td id="percent6">0.00%</td>
+        </tr>
+    </table>
+</body>
+</html>
